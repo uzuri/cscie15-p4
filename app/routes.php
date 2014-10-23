@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-    echo "Environment: ".App::environment();
+	return View::make('hello');
 });
 
 Route::get('/get-environment',function() {
