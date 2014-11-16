@@ -13,21 +13,28 @@ class CreateRulesTable extends Migration {
 	public function up()
 	{
 		Schema::create('rules', function($table) {
-
-		$table->increments('id');
-		$table->timestamps();
-		$table->bigInteger('language_id');
-		$table->string('description');
-		$table->string('letters');
-		$table->bigInteger('after_id');
-		$table->boolean('can_end')->default(true);
-		$table->boolean('can_start')->default(true);
 	
-	    });
+			$table->engine = 'InnoDB';
+					
+			$table->increments('id');
+			$table->timestamps();
+			$table->unsignedInteger('language_id');
+			$table->string('description');
+			$table->string('letters');
+			$table->boolean('can_end')->default(true);
+			$table->boolean('can_start')->default(true);
+	
+		});
+	    	
+				
+		Schema::table('rules', function($table)
+		{
+			$table->foreign('language_id')->references('id')->on('languages'); 
+		});
 	}
 
 	/**
-	 * Reverse the migrations.
+	 * Reverse the migrations.   
 	 *
 	 * @return void
 	 */
@@ -35,5 +42,4 @@ class CreateRulesTable extends Migration {
 	{
 		Schema::drop('rules');
 	}
-
 }
