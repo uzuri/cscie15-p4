@@ -64,7 +64,7 @@ Route::post('/language/{lang}/edit', function()
 	return View::make('main', $alldata);
 });
 
-Route::get('/language/{lang}/create', function()
+Route::get('/language/create', function()
 {
 	
 	$alldata = array();
@@ -72,7 +72,7 @@ Route::get('/language/{lang}/create', function()
 	return View::make('main', $alldata);
 });
 
-Route::post('/language/{lang}/create', function()
+Route::post('/language/create', function()
 {
 	
 	$alldata = array();
