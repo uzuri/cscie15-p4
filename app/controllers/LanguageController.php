@@ -2,57 +2,61 @@
 
 class LanguageController extends BaseController {
 
+	private $alldata = array();
+	
+	public function __construct() 
+	{
+		$this->alldata['title'] = ": Manage Languages";
+		$this->alldata['placeholder'] = "";
+	}
+	
 	public function getIndex()
 	{	
-		$alldata = array();
-		
-		$alldata['placeholder'] = "This page will list all options relating to languages, eg. existing languages that can be edited, create a language, delete a language, etc. (GET view)";
-		
-		return View::make('main', $alldata);
+		return View::make('languageindex', $this->alldata);
 	}
 	
 	public function getCreate()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will allow you to create a new language (GET view)";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will allow you to create a new language (GET view)";
+		return View::make('languagecreate', $this->alldata);
 	}
 	
 	
 	public function postCreate()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will allow you to create a new language (POST view)";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will allow you to create a new language (POST view)";
+		return View::make('languagecreate', $this->alldata);
 	}
 	
 	public function getEdit()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will allow you to edit a language's basic information (GET view)";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will allow you to edit a language's basic information (GET view)";
+		return View::make('main', $this->alldata);
 	}
 	
 	
 	public function postEdit()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will allow you to edit a language's basic information (POST view)";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will allow you to edit a language's basic information (POST view)";
+		return View::make('main', $this->alldata);
 	}
 	
 	public function getDelete()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will confirm language deletion (GET view)";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will confirm language deletion (GET view)";
+		return View::make('main', $this->alldata);
 	}
 	
 	
 	public function postDelete()
 	{
-		$alldata = array();
-		$alldata['placeholder'] = "This page will delete a langauge";
-		return View::make('main', $alldata);
+		
+		$this->alldata['placeholder'] = "This page will delete a langauge";
+		return View::make('main', $this->alldata);
 	}
 }
