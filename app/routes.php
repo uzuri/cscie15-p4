@@ -11,153 +11,30 @@
 |
 */
 
-Route::get('/', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will just be an introduction; maybe it will throw out a randomly generated word in an invented language just to show you what it can do.";
-	return View::make('main', $alldata);
-});
+Route::get('/', 'SplashController@getIndex');
 
 // Word and name generation
-Route::get('/generate', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to generate a word in a language of your chosing (GET view).";
-	return View::make('main', $alldata);
-});
-
-Route::post('/generate', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to generate a word in a language of your chosing (POST view).";
-	return View::make('main', $alldata);
-});
-
-
-
+Route::get('/generate', 'GenerateController@getIndex');
+Route::post('/generate', 'GenerateController@getIndex');
 
 // Language management
-Route::get('/language', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will list all options relating to languages, eg. existing languages that can be edited, create a language, delete a language, etc. (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::get('/language/{lang}/edit', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to edit a language's basic information (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/{lang}/edit', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to edit a language's basic information (POST view)";
-	return View::make('main', $alldata);
-});
-
-Route::get('/language/create', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to create a new language (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/create', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to create a new language (POST view)";
-	return View::make('main', $alldata);
-});
-
-Route::get('/language/{lang}/delete', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will confirm language deletion (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/{lang}/delete', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will actually delete a language (POST view)";
-	return View::make('main', $alldata);
-});
+Route::get('/language', 'LanguageController@getIndex');
+Route::get('/language/create', 'LanguageController@getCreate');
+Route::post('/language/create', 'LanguageController@postCreate');
+Route::get('/language/{lang}/edit', 'LanguageController@getEdit');
+Route::post('/language/{lang}/edit', 'LanguageController@postEdit');
+Route::get('/language/{lang}/delete', 'LanguageController@getDelete');
+Route::post('/language/{lang}/delete', 'LanguageController@postDelete');
 
 
 // Phoneme management
-Route::get('/language/{lang}/phoneme', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will list all options relating to phonemes WITHIN a language, eg. existing phonemes that can be edited, create a phonemes, delete a phoneme, etc. (GET view)";
-	return View::make('main', $alldata);
-});
-
-
-Route::get('/language/{lang}/phoneme/create', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow creation of a phoneme (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/{lang}/phoneme/create', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow creation of a phoneme (POST view)";
-	return View::make('main', $alldata);
-});
-
-
-Route::get('/language/{lang}/phoneme/{phon}/delete', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will confirm phoneme deletion (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/{lang}/phoneme/{phon}/delete', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will actually delete a phoneme (POST view)";
-	return View::make('main', $alldata);
-});
-
-
-Route::get('/language/{lang}/phoneme/{phon}/edit', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to edit a phoneme, including connecting it to existing phonemes that can follow it in a word (GET view)";
-	return View::make('main', $alldata);
-});
-
-Route::post('/language/{lang}/phoneme/{phon}/edit', function()
-{
-	
-	$alldata = array();
-	$alldata['placeholder'] = "This page will allow you to edit a phoneme, including connecting it to existing phonemes that can follow it in a word (POST view)";
-	return View::make('main', $alldata);
-});
-
-
+Route::get('/language/{lang}/phoneme', 'PhonemeController@getIndex');
+Route::get('/language/{lang}/phoneme/create', 'PhonemeController@getCreate');
+Route::post('/language/{lang}/phoneme/create', 'PhonemeController@postCreate');
+Route::get('/language/{lang}/phoneme/{phon}/delete','PhonemeController@getDelete');
+Route::post('/language/{lang}/phoneme/{phon}/delete','PhonemeController@postDelete');
+Route::get('/language/{lang}/phoneme/{phon}/edit','PhonemeController@getEdit');
+Route::post('/language/{lang}/phoneme/{phon}/edit','PhonemeController@postEdit');
 
 // Some debugging tools
 Route::get('/get-environment',function() {
