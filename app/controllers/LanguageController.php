@@ -8,25 +8,47 @@ class LanguageController extends BaseController {
 	{
 		$this->alldata['title'] = ": Manage Languages";
 		$this->alldata['placeholder'] = "";
+		$this->alldata['alert'] = "";
+		$this->alldata['languages'] = "";
+		$this->alldata['lcount'] = 0;
 	}
 	
 	public function getIndex()
 	{	
+		$languages = Language::all();
+		
+		$this->alldata['languages'] = $languages;
+		$this->alldata['lcount'] = count($languages);
+		
 		return View::make('languageindex', $this->alldata);
 	}
 	
 	public function getCreate()
 	{
 		
-		$this->alldata['placeholder'] = "This page will allow you to create a new language (GET view)";
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/create";
+		
 		return View::make('languagecreate', $this->alldata);
 	}
 	
 	
 	public function postCreate()
 	{
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/create";
 		
-		$this->alldata['placeholder'] = "This page will allow you to create a new language (POST view)";
+		$language = new Language();
+		
+		$data = Input::all();
+		
+		$language->name = $data['name'];
+		$language->description = $data['description'];
+		$language->save();
+		
+		$this->alldata['alert'] = '<p class="alert">Language made!</p>';
 		return View::make('languagecreate', $this->alldata);
 	}
 	
