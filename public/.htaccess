@@ -13,6 +13,3 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
-
-Order deny,allow
-Deny from all
