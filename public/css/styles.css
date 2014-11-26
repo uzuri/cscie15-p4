@@ -19,6 +19,7 @@ td, th
 {
 	border: 1px solid black;
 	padding: 1em;
+	vertical-align: top;
 }
 
 #navigation
@@ -31,4 +32,18 @@ td, th
 {
 	width: 74%;
 	float: right;
+}
+
+.columns
+{    
+	-webkit-column-count: 5; 
+	-moz-column-count: 5;
+	column-count: 5;
+}     
+
+
+.columns p
+{
+	margin-top: 0;
+	padding-top: 0;
 }

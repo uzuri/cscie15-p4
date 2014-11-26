@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('body')
-	{{ $placeholder }}
+	{{ $alert }}
 	<table>
 	@if ($lcount > 0)
 		<tr>	
@@ -15,7 +15,7 @@
 				<td>{{ $language->id }}</td>
 				<td>{{ $language->name }}</td>
 				<td>{{ $language->description }}</td>
-				<td><a href="/language/{{ $language->id }}/edit">Edit</a> | <a href="/language/{{ $language->id }}/delete">Delete</a></td>
+				<td><a href="/language/{{ $language->id }}/phoneme">View Phonemes</a> | <a href="/language/{{ $language->id }}/edit">Edit</a> | <a href="/language/{{ $language->id }}/delete">Delete</a></td>
 			</tr>
 		@endforeach
 	@else

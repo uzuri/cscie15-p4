@@ -15,7 +15,7 @@ class LanguageController extends BaseController {
 	
 	public function getIndex()
 	{	
-		$languages = Language::all();
+		$languages = Language::orderBy('name')->get();
 		
 		$this->alldata['languages'] = $languages;
 		$this->alldata['lcount'] = count($languages);
@@ -52,33 +52,59 @@ class LanguageController extends BaseController {
 		return View::make('languagecreate', $this->alldata);
 	}
 	
-	public function getEdit()
+	public function getEdit($lang)
 	{
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/edit";
 		
-		$this->alldata['placeholder'] = "This page will allow you to edit a language's basic information (GET view)";
-		return View::make('main', $this->alldata);
+		$this->alldata['title'] = ": Edit Language";
+		
+		$this->alldata['languages'] = Language::where('id', '=', $lang)->first();
+    
+		return View::make('languageedit', $this->alldata);
 	}
 	
 	
-	public function postEdit()
+	public function postEdit($lang)
 	{
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/edit";
 		
-		$this->alldata['placeholder'] = "This page will allow you to edit a language's basic information (POST view)";
-		return View::make('main', $this->alldata);
+		$data = Input::all();
+		
+		$this->alldata['languages'] = $language = Language::where('id', '=', $lang)->first();
+		
+		$language->name = $data['name'];
+		$language->description = $data['description'];
+		$language->save();
+		
+		$this->alldata['alert'] = '<p class="alert">Language edited!</p>';
+		
+		return View::make('languageedit', $this->alldata);
 	}
 	
-	public function getDelete()
+	public function getDelete($lang)
 	{
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/delete";
 		
-		$this->alldata['placeholder'] = "This page will confirm language deletion (GET view)";
-		return View::make('main', $this->alldata);
+		$this->alldata['languages'] = Language::where('id', '=', $lang)->first();
+		
+		return View::make('languagedelete', $this->alldata);
 	}
 	
 	
-	public function postDelete()
-	{
+	public function postDelete($lang)
+	{	
+		$this->alldata['languages'] = $language = Language::where('id', '=', $lang)->first();
 		
-		$this->alldata['placeholder'] = "This page will delete a langauge";
-		return View::make('main', $this->alldata);
+		$this->alldata['alert'] = '<p class="alert">' . $language->name . ' deleted!</p>';
+		
+		$language->delete();
+	
+		return View::make('languagedeletedone', $this->alldata);
 	}
 }

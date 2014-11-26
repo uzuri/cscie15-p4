@@ -21,8 +21,8 @@ class CreateRulesTable extends Migration {
 			$table->unsignedInteger('language_id');
 			$table->string('description');
 			$table->string('letters');
-			$table->boolean('can_end')->default(true);
-			$table->boolean('can_start')->default(true);
+			$table->boolean('can_end')->default(false);
+			$table->boolean('can_start')->default(false);
 	
 		});
 	    	
