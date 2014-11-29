@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Fantasy Language Builder</title>
-	<link rel="stylesheet" type="text/css" href="/css/styles.css" />
+	<link rel="stylesheet" type="text/css" href="http://p4.cscie15.theredsetter.com/css/styles.css" />
 
 </head>
 <body>
