@@ -20,7 +20,7 @@ class SplashController extends BaseController {
 		$this->alldata['title'] = "";
 		$this->alldata['placeholder'] = "<p>Welcome to the Fantasy Language Builder!  Here you can create your own language by defining phonemes and the rules that they have to follow and generate words using the rules.</p>";
 		
-		/*$maxwordlength = 8; // Make sure this doesn't spin forever if some clever person decided to make a language with no ending phonemes
+		$maxwordlength = 8; // Make sure this doesn't spin forever if some clever person decided to make a language with no ending phonemes
 		
 		
 		$languages = Language::all();
@@ -68,7 +68,7 @@ class SplashController extends BaseController {
 		}
 		
 		$this->alldata['placeholder'] .= "<p>" . $word . "</p>";
-		*/
+		
 		
 		return View::make('index', $this->alldata);
 	}
