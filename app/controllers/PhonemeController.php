@@ -53,7 +53,7 @@ class PhonemeController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/create";
+		$this->alldata['uri'] = $uri->getUri() . "/language/" . $lang . "/phoneme/create";
 		
 		$this->alldata['lang'] = $lang;
 		$this->alldata['phonemes'] = $phonemes = Rule::orderBy('letters')->where("language_id", "=", $lang)->get();
@@ -66,7 +66,7 @@ class PhonemeController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/create";
+		$this->alldata['uri'] = $uri->getUri() . "/language/" . $lang . "/phoneme/create";
 		$this->alldata['lang'] = $lang;
 		
 		$phoneme = new Rule();
@@ -108,7 +108,7 @@ class PhonemeController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/" . $phone . "/edit";
+		$this->alldata['uri'] = $uri->getUri() . "/language/" . $lang . "/phoneme/" . $phone . "/edit";
 		$this->alldata['lang'] = $lang;
 		
 		$this->alldata['phonemes'] = Rule::where('id', '=', $phone)->first();
@@ -147,7 +147,7 @@ class PhonemeController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/" . $phone . "/edit";
+		$this->alldata['uri'] = $uri->getUri() . "/language/" . $lang . "/phoneme/" . $phone . "/edit";
 		$this->alldata['lang'] = $lang;
 		
 		$this->alldata['phonemes'] = $phoneme = Rule::where('id', '=', $phone)->first();
@@ -209,7 +209,7 @@ class PhonemeController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/" . $phone . "/delete";
+		$this->alldata['uri'] = $uri->getUri() . "/language/" . $lang . "/phoneme/" . $phone . "/delete";
 		
 		$this->alldata['languages'] = Language::where('id', '=', $lang)->first();
 		$this->alldata['phonemes'] = Rule::where('id', '=', $phone)->first();
