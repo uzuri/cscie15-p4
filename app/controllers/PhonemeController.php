@@ -17,7 +17,7 @@ class PhonemeController extends BaseController {
 	
 	public function getIndex($lang)
 	{	
-		$phonemes = Rule::all();
+		$phonemes = Rule::where("language_id", "=", $lang)->orderBy("letters")->get();
 		
 		$this->alldata['followers'] = array();
 		
@@ -56,7 +56,7 @@ class PhonemeController extends BaseController {
 		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/create";
 		
 		$this->alldata['lang'] = $lang;
-		$this->alldata['phonemes'] = $phonemes = Rule::orderBy('letters')->get();
+		$this->alldata['phonemes'] = $phonemes = Rule::orderBy('letters')->where("language_id", "=", $lang)->get();
 		
 		return View::make('phonemecreate', $this->alldata);
 	}
@@ -86,7 +86,7 @@ class PhonemeController extends BaseController {
 		}
 		$phoneme->save();
 		
-		$this->alldata['phonemes'] = $phonemes = Rule::orderBy('letters')->get();
+		$this->alldata['phonemes'] = $phonemes = Rule::orderBy('letters')->where("language_id", "=", $lang)->get();
 		
 		// Walk through phonemes and add if they exist
 		foreach ($phonemes as $set)
@@ -113,7 +113,31 @@ class PhonemeController extends BaseController {
 		
 		$this->alldata['phonemes'] = Rule::where('id', '=', $phone)->first();
 		
-		$this->alldata['followers'] = Rule::orderBy('letters')->get();
+		$this->alldata['followers'] = $followers = 	Rule::orderBy('letters')->where("language_id", "=", $lang)->get();
+		
+		
+		$existingfollowers = DB::table('followers')->join('rules', 'followers.follows_id', '=', 'rules.id')->where('rule_id', '=', $phone)->get();
+		$tempfollowers = array();
+		
+		foreach ($existingfollowers as $ef)
+		{
+			$tempfollowers[$ef->letters] = 1;
+		}
+		
+		// Walk through phonemes
+		$this->alldata['setfollowers'] = array();
+		foreach ($followers as $set)
+		{
+			if (array_key_exists($set->letters, $tempfollowers))
+			{
+				$this->alldata['setfollowers'][$set->letters] = 1;
+			}
+			else
+			{
+				$this->alldata['setfollowers'][$set->letters] = 0;
+			}
+		}
+		
 		
 		return View::make('phonemeedit', $this->alldata);
 	}
@@ -151,21 +175,60 @@ class PhonemeController extends BaseController {
 		}
 		$phoneme->save();
 		
+		$this->alldata['followers'] = $followers = 	Rule::orderBy('letters')->where("language_id", "=", $lang)->get();
+		
+		// Remove existing phonemes so we don't get doubles
+		$todelete = Follower::where('rule_id', '=', $phone)->delete();
+		
+		// Walk through phonemes and add if they exist
+		
+		$this->alldata['setfollowers'] = array();
+		
+		foreach ($followers as $set)
+		{
+			if (Input::get($set->letters) == 1)
+			{
+				$follower = new Follower();
+				$follower->rule_id = $phoneme->id;
+				$follower->follows_id = $set->id;
+				$follower->save();
+				$this->alldata['setfollowers'][$set->letters] = 1;
+			}
+			else
+			{
+				$this->alldata['setfollowers'][$set->letters] = 0;
+			}
+		}
+		
+		$this->alldata['alert'] = '<p class="alert">Phoneme edited!</p>';
+		
 		return View::make('phonemeedit', $this->alldata);
 	}
 	
-	public function getDelete()
+	public function getDelete($lang, $phone)
 	{
-		$this->alldata = array();
-		$this->alldata['placeholder'] = "This page will confirm phoneme deletion (GET view)";
-		return View::make('main', $this->alldata);
+		// Deal with proxied domain
+		$uri = new UriManager();
+		$this->alldata['uri'] = $uri->getUri() . "language/" . $lang . "/phoneme/" . $phone . "/delete";
+		
+		$this->alldata['languages'] = Language::where('id', '=', $lang)->first();
+		$this->alldata['phonemes'] = Rule::where('id', '=', $phone)->first();
+		$this->alldata['lang'] = $lang;
+		
+		return View::make('phonemedelete', $this->alldata);
 	}
 	
 	
-	public function postDelete()
+	public function postDelete($lang, $phone)
 	{
-		$this->alldata = array();
-		$this->alldata['placeholder'] = "This page will delete a langauge";
-		return View::make('main', $this->alldata);
+		$phoneme = Rule::where('id', '=', $phone)->first();
+		$this->alldata['alert'] = '<p class="alert">' . $phoneme->letters . ' deleted!</p>';
+		
+		Follower::where('rule_id', '=', $phone)->delete();
+		Follower::where('follows_id', '=', $phone)->delete();
+		Rule::where('id', '=', $phone)->delete();
+		$this->alldata['lang'] = $lang;
+	
+		return View::make('phonemedeletedone', $this->alldata);
 	}
 }

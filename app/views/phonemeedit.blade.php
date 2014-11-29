@@ -26,14 +26,14 @@
 					<div class="columns">
 					
 					@foreach ($followers as $follower)
-						<p>{{ Form::checkbox($follower->letters, 1) }}
+						<p>{{ Form::checkbox($follower->letters, 1, $setfollowers[$follower->letters]) }}
 						{{ $follower->letters }}</p>
 					@endforeach
 					</div>
 				</td>
 			</tr>
 		</table>
-		<p> {{ Form::submit('Make this Phoneme') }} </p>
+		<p> {{ Form::submit('Change this Phoneme') }} </p>
 	{{ Form::close() }}
 
 @stop

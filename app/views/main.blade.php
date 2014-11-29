@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Fantasy Language Builder</title>
-	<style media="screen" type="text/css">@import "/css/styles.css";</style>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css" />
 
 </head>
 <body>
