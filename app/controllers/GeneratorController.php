@@ -14,6 +14,10 @@ class GeneratorController extends BaseController {
 		
 		$phonemes = Rule::where("can_start", "=", 1)->where("rules.language_id", "=", $lang)->get();
 		
+		if (count($phonemes) < 1)
+		{
+			return "";
+		}
 		
 		$randpick = rand(0, count($phonemes) - 1);
 		$word .= $phonemes[$randpick]->letters;

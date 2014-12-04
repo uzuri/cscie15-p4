@@ -22,7 +22,11 @@ class SplashController extends BaseController {
 		
 		$languages = Language::all();
 		$randpick = rand(0, count($languages) - 1);
-		
+				
+		if (count($languages) < 1)
+		{
+			View::make('index', $this->alldata);
+		}
 		
 		
 		$this->alldata['placeholder'] .= "<h3>Random Example (" . $languages[$randpick]->name . ")</h3>";
