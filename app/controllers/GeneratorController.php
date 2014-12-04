@@ -6,7 +6,7 @@
 
 class GeneratorController extends BaseController {
 
-	private $maxwordlength = 15;
+	private $maxwordlength = 10;
 	
 	public function getWord($lang)
 	{
