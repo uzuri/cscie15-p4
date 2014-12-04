@@ -15,7 +15,7 @@ Route::get('/', 'SplashController@getIndex');
 
 // Word and name generation
 Route::get('/generate', 'GenerateController@getIndex');
-Route::post('/generate', 'GenerateController@getIndex');
+Route::post('/generate', 'GenerateController@postIndex');
 
 // Language management
 Route::get('/language', 'LanguageController@getIndex');
