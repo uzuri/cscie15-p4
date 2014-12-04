@@ -15,7 +15,7 @@ class GenerateController extends BaseController {
 	{	
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "generate";
+		$this->alldata['uri'] = $uri->getUri() . "/generate";
 		
 		$languages = Language::orderBy('name')->get();
 		$langarray = array();
@@ -32,7 +32,7 @@ class GenerateController extends BaseController {
 	{	
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "generate";
+		$this->alldata['uri'] = $uri->getUri() . "/generate";
 		
 		$languages = Language::orderBy('name')->get();
 		$langarray = array();
