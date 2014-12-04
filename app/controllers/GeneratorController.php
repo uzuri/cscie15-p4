@@ -44,7 +44,7 @@ class GeneratorController extends BaseController {
 			if ($phonemes[$randpick]->can_end == 1)
 			{
 				// mix things up a bit
-				$randend = rand(0,($this->maxwordlength + 10 - $counter));
+				$randend = rand(0,($this->maxwordlength - $counter));
 				if ($randend == 0)
 				{
 					$notend = false;
