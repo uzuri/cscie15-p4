@@ -28,7 +28,7 @@ class LanguageController extends BaseController {
 		
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "/language/create";
+		$this->alldata['uri'] = $uri->getUri() . "language/create";
 		
 		return View::make('languagecreate', $this->alldata);
 	}
@@ -38,7 +38,7 @@ class LanguageController extends BaseController {
 	{
 		// Deal with proxied domain
 		$uri = new UriManager();
-		$this->alldata['uri'] = $uri->getUri() . "/language/create";
+		$this->alldata['uri'] = $uri->getUri() . "language/create";
 		
 		$language = new Language();
 		

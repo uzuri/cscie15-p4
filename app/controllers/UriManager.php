@@ -4,7 +4,7 @@
 class UriManager
 {
 	// Default URI is root
-	private $uri = "/";
+	private $uri = "";
 	
 	/**
 	  * Set the URI on initialization
