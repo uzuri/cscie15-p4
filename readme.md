@@ -14,7 +14,7 @@ As of 12/11 there are known spots where data is not properly vetted (it's possib
 
 ## Future additions
 
-If I'd had time, I would have liked to have adde the following:
+If I'd had time, I would have liked to have added the following:
 
 + Authentication (ONLY edit your own languages; set a language as public or private)
 + Create full profiles for yourself as a user
