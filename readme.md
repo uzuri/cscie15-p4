@@ -1,25 +1,29 @@
-## Laravel PHP Framework
+# CSCI E-15 P4 Rebecca Mazur
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[Live Location](http://p4.cscie15.theredsetter.com)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+Fantasy Name Generator; primarily built from scratch, this project is about practicing with databases in Laravel and will let you build out fake languages via rules and phonemes.  
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+## Known issues
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+This project isn't as complete as I'd like it to be, though I believe it at least covers the bare bones.   I do know that there are problems if you have no languages in the database (so please don't delete the example languages on the live site if you can help it).   
 
-## Official Documentation
+As of 12/11 there are known spots where data is not properly vetted (it's possible to have numbers be phonemes, for example... maybe in your fantasy language numbers are acceptable letters, who knows?) before entry into the database.
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
 
-### Contributing To Laravel
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+## Future additions
 
-### License
+If I'd had time, I would have liked to have adde the following:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
++ Authentication (ONLY edit your own languages; set a language as public or private)
++ Create full profiles for yourself as a user
++ "Favorite" generated words
++ Snag words for use as character names and build character profiles around them
++ Expand rulesets for phonemes, eg. disallow certain phonemes from appearing in the middle of words.
++ Allow/Disallow single-phoneme words
++ Set maximum word length (in phonemes)
+
+
+
+[Jing Screencast](http://screencast.com/t/RBup8cMeZ)
